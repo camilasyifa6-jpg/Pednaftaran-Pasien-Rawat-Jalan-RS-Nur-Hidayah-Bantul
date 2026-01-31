@@ -1,0 +1,373 @@
+<!
+DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Online - RS Nur Hidayah Bantul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0fdf4; /* Light green background to match hospital theme */
+        }
+
+        .hospital-gradient {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .step-indicator.active {
+            color: #059669;
+            border-color: #059669;
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Top Branding -->
+    <div class="hospital-gradient text-white py-6 px-4 shadow-lg">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+                <div class="bg-white p-2 rounded-full">
+                    <i class="fas fa-hospital-symbol text-emerald-600 text-3xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">RS NUR HIDAYAH</h1>
+                    <p class="text-sm opacity-90 italic">Melayani dengan Ikhlas dan Kasih Sayang</p>
+                </div>
+            </div>
+            <div class="text-center md:text-right text-sm">
+                <p><i class="fas fa-map-marker-alt mr-1"></i> Jl. Imogiri Timur Km. 11.5, Jetis, Bantul</p>
+                <p><i class="fas fa-phone-alt mr-1"></i> (0274) 2810614 | WA: 0851-0047-4525</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto mt-[-20px] px-4">
+        
+        <!-- Welcome Note -->
+        <div class="bg-white rounded-xl p-4 mb-6 shadow-sm border-l-4 border-emerald-500">
+            <h2 class="font-bold text-emerald-800">Pendaftaran Mandiri Rawat Jalan</h2>
+            <p class="text-xs text-gray-600">Pendaftaran online dilakukan maksimal H-1 sebelum jadwal kunjungan.</p>
+        </div>
+
+        <!-- Stepper -->
+        <div class="bg-white rounded-xl shadow-sm mb-6 flex overflow-hidden">
+            <div id="step1-tab" class="flex-1 py-4 text-center text-xs md:text-sm font-semibold border-b-4 step-indicator active">
+                1. IDENTITAS
+            </div>
+            <div id="step2-tab" class="flex-1 py-4 text-center text-xs md:text-sm font-semibold border-b-4 border-gray-100 text-gray-400">
+                2. KLINIK & DOKTER
+            </div>
+            <div id="step3-tab" class="flex-1 py-4 text-center text-xs md:text-sm font-semibold border-b-4 border-gray-100 text-gray-400">
+                3. KONFIRMASI
+            </div>
+        </div>
+
+        <form id="bookingForm" class="space-y-6">
+            <!-- STEP 1: Identitas Pasien -->
+            <section id="section1" class="bg-white rounded-2xl p-6 md:p-8 card-shadow">
+                <div class="flex items-center space-x-2 mb-6 border-b pb-2">
+                    <i class="fas fa-user-circle text-emerald-600 text-xl"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Data Diri Pasien</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Nomor RM (Bila Ada)</label>
+                        <input type="text" name="norm" placeholder="Contoh: 123456" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">NIK Pasien *</label>
+                        <input type="number" name="nik" required placeholder="16 digit NIK" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+                    <div class="md:col-span-2 space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Nama Lengkap Pasien *</label>
+                        <input type="text" name="nama" required placeholder="Nama sesuai KTP" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Tanggal Lahir *</label>
+                        <input type="date" name="tgl_lahir" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">No. WhatsApp Aktif *</label>
+                        <input type="tel" name="wa" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <button type="button" onclick="toStep(2)" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 shadow-md transition-all active:scale-[0.98]">
+                        Lanjut ke Jadwal Dokter <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 2: Pilih Klinik & Dokter -->
+            <section id="section2" class="hidden-section bg-white rounded-2xl p-6 md:p-8 card-shadow">
+                <div class="flex items-center space-x-2 mb-6 border-b pb-2">
+                    <i class="fas fa-calendar-alt text-emerald-600 text-xl"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Tujuan Kunjungan</h3>
+                </div>
+
+                <div class="space-y-5">
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Pilih Poliklinik *</label>
+                        <select id="klinik" name="klinik" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition" onchange="loadDokter()">
+                            <option value="">-- Pilih Spesialis --</option>
+                            <option value="Klinik Penyakit Dalam">Klinik Penyakit Dalam</option>
+                            <option value="Klinik Anak">Klinik Anak</option>
+                            <option value="Klinik Kandungan & Kebidanan">Klinik Kandungan & Kebidanan</option>
+                            <option value="Klinik Bedah Umum">Klinik Bedah Umum</option>
+                            <option value="Klinik Mata">Klinik Mata</option>
+                            <option value="Klinik Gigi">Klinik Gigi</option>
+                            <option value="Klinik Umum">Klinik Umum / IGD</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Pilih Dokter & Jam Praktek *</label>
+                        <select id="dokter" name="dokter" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                            <option value="">Pilih Klinik Dahulu</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Tanggal Rencana Periksa *</label>
+                        <input type="date" id="tgl_periksa" name="tgl_periksa" required class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-sm font-semibold text-gray-700">Jenis Penjaminan *</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="border p-3 rounded-lg flex items-center justify-center cursor-pointer hover:bg-emerald-50 peer-checked:bg-emerald-100 transition">
+                                <input type="radio" name="bayar" value="BPJS" class="mr-2 accent-emerald-600" checked> BPJS
+                            </label>
+                            <label class="border p-3 rounded-lg flex items-center justify-center cursor-pointer hover:bg-emerald-50 transition">
+                                <input type="radio" name="bayar" value="UMUM" class="mr-2 accent-emerald-600"> UMUM
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-3">
+                    <button type="button" onclick="toStep(1)" class="flex-1 bg-gray-100 text-gray-600 py-3 rounded-xl font-bold hover:bg-gray-200 transition">
+                        Kembali
+                    </button>
+                    <button type="button" onclick="prepareReview()" class="flex-[2] bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 shadow-md transition">
+                        Review Data <i class="fas fa-search ml-1"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 3: Review & Submit -->
+            <section id="section3" class="hidden-section bg-white rounded-2xl p-6 md:p-8 card-shadow">
+                <div class="text-center mb-6">
+                    <i class="fas fa-clipboard-check text-emerald-500 text-5xl mb-2"></i>
+                    <h3 class="text-xl font-bold text-gray-800">Konfirmasi Pendaftaran</h3>
+                    <p class="text-gray-500 text-sm">Pastikan data yang Anda masukkan sudah benar</p>
+                </div>
+
+                <div id="reviewBox" class="bg-gray-50 rounded-xl p-5 border border-gray-100 space-y-3 text-sm">
+                    <!-- Dynamic Content -->
+                </div>
+
+                <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-100 flex gap-3">
+                    <i class="fas fa-info-circle text-yellow-600 mt-1"></i>
+                    <p class="text-xs text-yellow-800 leading-relaxed">
+                        Dengan menekan tombol Konfirmasi, saya menyatakan data yang diisi adalah benar dan bersedia datang sesuai jadwal yang telah dipilih.
+                    </p>
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3">
+                    <button type="submit" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 shadow-lg transition-all transform active:scale-95">
+                        KONFIRMASI SEKARANG
+                    </button>
+                    <button type="button" onclick="toStep(2)" class="text-gray-500 text-sm font-medium py-2">
+                        Ubah Jadwal/Poli
+                    </button>
+                </div>
+            </section>
+        </form>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <div class="bg-white rounded-3xl w-full max-w-md p-8 text-center shadow-2xl animate-bounce-short">
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check-double text-4xl"></i>
+                </div>
+                <h4 class="text-2xl font-black text-emerald-800">PENDAFTARAN BERHASIL</h4>
+                <p class="text-gray-500 text-sm mt-2">Nomor Antrean Anda:</p>
+                
+                <div class="my-6 py-4 bg-emerald-50 rounded-2xl border-2 border-emerald-200">
+                    <span id="resAntrean" class="text-6xl font-black text-emerald-700 tracking-wider">A-08</span>
+                </div>
+
+                <div class="text-left bg-gray-50 p-4 rounded-xl mb-6 text-xs space-y-2">
+                    <p><strong>Nama:</strong> <span id="resNama">-</span></p>
+                    <p><strong>Poli:</strong> <span id="resPoli">-</span></p>
+                    <p><strong>Waktu:</strong> <span id="resWaktu">-</span></p>
+                </div>
+
+                <p class="text-[10px] text-gray-400 mb-6 italic">* Silakan screenshot bukti ini dan tunjukkan ke petugas pendaftaran RS Nur Hidayah saat tiba.</p>
+                
+                <button onclick="window.location.reload()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700">
+                    Selesai & Tutup
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Data Dummy Dokter RS Nur Hidayah
+        const masterDokter = {
+            "Klinik Penyakit Dalam": [
+                "dr. Sagiran, Sp.B(K)BD., M.Kes (08:00 - 10:00)",
+                "dr. Arrus Sp.PD (11:00 - 13:00)"
+            ],
+            "Klinik Anak": [
+                "dr. Ahmad Sp.A (09:00 - 12:00)",
+                "dr. Nurul Sp.A (15:00 - 17:00)"
+            ],
+            "Klinik Kandungan & Kebidanan": [
+                "dr. Hesti Sp.OG (08:00 - 11:00)",
+                "dr. Doni Sp.OG (13:00 - 15:00)"
+            ],
+            "Klinik Mata": [
+                "dr. Wulan Sp.M (10:00 - 12:00)"
+            ],
+            "Klinik Gigi": [
+                "drg. Siska (09:00 - 12:00)",
+                "drg. Faisal (13:00 - 15:00)"
+            ],
+            "Klinik Umum": [
+                "Dokter Jaga IGD (24 Jam)"
+            ]
+        };
+
+        function loadDokter() {
+            const klinik = document.getElementById('klinik').value;
+            const selectDokter = document.getElementById('dokter');
+            
+            selectDokter.innerHTML = '<option value="">-- Pilih Dokter --</option>';
+            
+            if (masterDokter[klinik]) {
+                masterDokter[klinik].forEach(d => {
+                    const opt = document.createElement('option');
+                    opt.value = d;
+                    opt.textContent = d;
+                    selectDokter.appendChild(opt);
+                });
+            } else {
+                selectDokter.innerHTML = '<option value="">Pilih Klinik Dahulu</option>';
+            }
+        }
+
+        function toStep(n) {
+            // Validation for Step 1
+            if (n === 2) {
+                const nik = document.getElementsByName('nik')[0].value;
+                const nama = document.getElementsByName('nama')[0].value;
+                if (!nik || !nama) {
+                    alert("Mohon lengkapi NIK dan Nama Pasien.");
+                    return;
+                }
+            }
+
+            // UI Switching
+            [1, 2, 3].forEach(step => {
+                document.getElementById('section' + step).classList.add('hidden-section');
+                document.getElementById('step' + step + '-tab').classList.remove('active', 'border-emerald-500');
+                document.getElementById('step' + step + '-tab').classList.add('border-gray-100', 'text-gray-400');
+            });
+
+            document.getElementById('section' + n).classList.remove('hidden-section');
+            document.getElementById('step' + n + '-tab').classList.add('active', 'border-emerald-500');
+            document.getElementById('step' + n + '-tab').classList.remove('text-gray-400');
+            window.scrollTo(0, 0);
+        }
+
+        function prepareReview() {
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            
+            if (!formData.get('klinik') || !formData.get('dokter') || !formData.get('tgl_periksa')) {
+                alert("Mohon lengkapi pilihan Klinik, Dokter, dan Tanggal.");
+                return;
+            }
+
+            const reviewHTML = `
+                <div class="grid grid-cols-2 gap-y-2">
+                    <p class="text-gray-500">Nama Pasien</p>
+                    <p class="font-bold text-gray-800">: ${formData.get('nama')}</p>
+                    
+                    <p class="text-gray-500">NIK</p>
+                    <p class="font-bold text-gray-800">: ${formData.get('nik')}</p>
+                    
+                    <p class="text-gray-500">WhatsApp</p>
+                    <p class="font-bold text-gray-800">: ${formData.get('wa')}</p>
+                    
+                    <div class="col-span-2 border-t my-2"></div>
+                    
+                    <p class="text-gray-500">Klinik Tujuan</p>
+                    <p class="font-bold text-emerald-700">: ${formData.get('klinik')}</p>
+                    
+                    <p class="text-gray-500">Dokter</p>
+                    <p class="font-bold text-gray-800">: ${formData.get('dokter').split('(')[0]}</p>
+                    
+                    <p class="text-gray-500">Tanggal Periksa</p>
+                    <p class="font-bold text-gray-800">: ${formData.get('tgl_periksa')}</p>
+                    
+                    <p class="text-gray-500">Pembayaran</p>
+                    <p class="font-bold text-gray-800">: <span class="bg-emerald-100 text-emerald-800 px-2 rounded">${formData.get('bayar')}</span></p>
+                </div>
+            `;
+            
+            document.getElementById('reviewBox').innerHTML = reviewHTML;
+            toStep(3);
+        }
+
+        // Handle Submission
+        document.getElementById('bookingForm').onsubmit = function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const btn = e.submitter;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim Data...';
+
+            // Simulate Network Delay
+            setTimeout(() => {
+                const code = "NH-" + Math.floor(Math.random() * 90 + 10);
+                document.getElementById('resAntrean').innerText = code;
+                document.getElementById('resNama').innerText = formData.get('nama');
+                document.getElementById('resPoli').innerText = formData.get('klinik');
+                document.getElementById('resWaktu').innerText = formData.get('tgl_periksa');
+                
+                document.getElementById('successModal').classList.remove('hidden');
+            }, 1800);
+        };
+
+        // Date restriction (H+1 to H+14)
+        const dateInput = document.getElementById('tgl_periksa');
+        const minDate = new Date();
+        minDate.setDate(minDate.getDate() + 1);
+        const maxDate = new Date();
+        maxDate.setDate(maxDate.getDate() + 14);
+
+        dateInput.min = minDate.toISOString().split('T')[0];
+        dateInput.max = maxDate.toISOString().split('T')[0];
+    </script>
+</body>
+</html>
